@@ -40,6 +40,8 @@ namespace WebAtividadeEntrevista
             bundles.Add(new StyleBundle("~/Content/jtable").Include(
                       "~/Scripts/jtable/themes/metro/darkgray/jtable.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-Mask-Plugin").Include(
+                      "~/Scripts/jquery-Mask-Plugin/jquery-Mask-Plugin.js"));
         }
     }
 }
