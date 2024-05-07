@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using WebAtividadeEntrevista.CustomValidationAttributes;
 
 namespace WebAtividadeEntrevista.Models
@@ -8,6 +10,10 @@ namespace WebAtividadeEntrevista.Models
     /// </summary>
     public class ClienteModel
     {
+        private string _cpf;
+
+        private List<BeneficiariosModel> _beneficiarios;
+
         public long Id { get; set; }
         
         /// <summary>
@@ -68,6 +74,20 @@ namespace WebAtividadeEntrevista.Models
         /// CPF
         /// </summary>
         [CPFValidation(ErrorMessage = "Digite um CPF válido")]
-        public string CPF { get; set; }
+        public string CPF
+        {
+            get => _cpf;
+            set => _cpf = Regex.Replace(value, @"\D", "");
+        }
+
+        /// <summary>
+        /// Beneficiarios
+        /// </summary>
+        [Required]
+        public List<BeneficiariosModel> Beneficiarios
+        {
+            get => _beneficiarios ?? new List<BeneficiariosModel>();
+            set => _beneficiarios = value;
+        }
     }    
 }
